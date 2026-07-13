@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#123b58">
+<title>Quiz Quiz 1 — Questões 1 a 10</title>
+<style>
+:root{--azul:#0d3b5a;--azul2:#1976a5;--claro:#e9f7ff;--rosa:#fff0f6;--verde:#1f8a5b;--vermelho:#c53d4d;--texto:#173044}
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eaf8ff,#fff4f8);color:var(--texto)}
+body{padding:9px} .app{width:min(100%,540px);margin:auto}
+header{background:linear-gradient(135deg,var(--azul),var(--azul2));color:white;border-radius:20px;padding:14px;text-align:center;box-shadow:0 12px 28px rgba(13,59,90,.18)}
+header .curso{font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px} header h1{margin:6px 0 2px;font-size:1.35rem} header p{margin:0;font-size:.85rem;opacity:.92}
+.painel{display:flex;align-items:center;gap:10px;background:white;border-radius:15px;padding:10px 12px;margin:10px 0;box-shadow:0 7px 18px rgba(20,70,100,.08)}
+.prog{flex:1;height:10px;background:#dcecf4;border-radius:20px;overflow:hidden} .bar{height:100%;background:linear-gradient(90deg,#42aee0,#ec82ad);width:10%;transition:.3s} .count{font-weight:900;font-size:.88rem}
+.tela{background:white;border-radius:22px;min-height:540px;padding:18px;box-shadow:0 14px 34px rgba(22,73,103,.14);display:flex;flex-direction:column}
+.tag{align-self:flex-start;background:#dff3ff;color:#145171;font-size:.75rem;font-weight:900;border-radius:999px;padding:7px 11px;margin-bottom:12px}
+.questao{font-size:1.08rem;line-height:1.42;font-weight:800;margin-bottom:14px}
+.opcoes{display:grid;gap:9px} .opcao{border:2px solid #dbeaf2;background:#f9fdff;border-radius:15px;padding:12px;text-align:left;font-size:.98rem;line-height:1.3;font-weight:700;cursor:pointer}
+.opcao.sel{border-color:#2588b7;background:#e4f5fd} .opcao.certa{border-color:var(--verde);background:#e7f8ef;color:#12663f} .opcao.errada{border-color:var(--vermelho);background:#fff0f2;color:#9d2433}
+.aviso{margin-top:auto;padding-top:14px;text-align:center;font-size:.84rem;color:#607786}
+.acoes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px} button{border:0;border-radius:14px;padding:13px 10px;font-size:.96rem;font-weight:900;cursor:pointer}
+.sec{background:white;color:#174b68;border:1px solid #d7e9f2} .pri{background:linear-gradient(135deg,#17658e,#278fbd);color:white}
+.comentario{display:none;background:linear-gradient(145deg,#fff0f6,#fff8fb)} .comentario h2{font-size:1.2rem;margin:4px 0 14px;color:#9c3d67} .resultado{font-size:1rem;font-weight:900;margin-bottom:12px} .box{background:white;border-left:6px solid #ef86b1;border-radius:14px;padding:15px;font-size:1rem;line-height:1.5;font-weight:700}
+.gabarito{margin-top:12px;background:#e8f8ef;border-radius:13px;padding:12px;font-weight:900;color:#176843}
+.final{display:none;text-align:center;justify-content:center;align-items:center} .nota{font-size:3rem;font-weight:900;color:#17658e;margin:12px 0} .final h2{font-size:1.5rem}
+@media(max-height:740px){.tela{min-height:470px} .questao{font-size:1rem} .opcao{padding:10px;font-size:.93rem}}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="curso">Curso de Contabilidade Professor Moreira</div><h1>Quiz 1 — Questões 1 a 10</h1><p>Propriedade para Investimento • CPC 28</p></header>
+<div class="painel"><div class="prog"><div class="bar" id="bar"></div></div><div class="count" id="count"></div></div>
+
+<section class="tela" id="tQuestao">
+<div class="tag" id="tag"></div>
+<div class="questao" id="q"></div>
+<div class="opcoes" id="opts"></div>
+<div class="aviso">Marque uma alternativa e toque em “Responder”.</div>
+<div class="acoes"><button class="sec" onclick="voltar()">◀ Voltar</button><button class="pri" onclick="responder()">Responder</button></div>
+</section>
+
+<section class="tela comentario" id="tComentario">
+<div class="tag">Comentário da questão</div>
+<h2 id="tituloComentario"></h2>
+<div class="resultado" id="resultado"></div>
+<div class="box" id="comentario"></div>
+<div class="gabarito" id="gabarito"></div>
+<div class="acoes" style="margin-top:auto"><button class="sec" onclick="rever()">↩ Rever questão</button><button class="pri" onclick="proxima()">Próxima ▶</button></div>
+</section>
+
+<section class="tela final" id="tFinal">
+<div><div class="tag" style="margin:auto">Resultado final</div><h2>Quiz concluído!</h2><div class="nota" id="nota"></div><p id="msg"></p><div class="acoes"><button class="sec" onclick="reiniciar()">↻ Refazer</button><button class="pri" onclick="inicio()">Início</button></div></div>
+</section>
+</div>
+<script>
+const dados = [{"n": 1, "q": "Uma entidade adquiriu um terreno por R$ 200.000. A entidade ainda não determinou como irá utilizar o terreno. Em seu balanço patrimonial, o terreno deve ser contabilizado como:", "opts": ["Ativo circulante.", "Ativo imobilizado.", "Ativo intangível.", "Propriedade para investimento.", "Ativo realizável a longo prazo."], "ans": 3, "comment": "Terreno mantido para uso futuro ainda indeterminado é classificado como propriedade para investimento, pois se presume mantido para valorização do capital."}, {"n": 2, "q": "Conceitualmente, propriedade para investimento se refere a uma propriedade mantida para auferir aluguel, valorização do capital ou ambas. No Balanço Patrimonial, esse item deve ser apresentado no subgrupo:", "opts": ["Ativo imobilizado.", "Ativo realizável a longo prazo.", "Ajustes de avaliação patrimonial.", "Investimentos.", "Outros resultados abrangentes."], "ans": 3, "comment": "A propriedade para investimento é classificada no Ativo Não Circulante, no subgrupo Investimentos."}, {"n": 3, "q": "Uma entidade comprou um terreno ao lado de uma obra do metrô, com o intuito de valorização. A classificação correta é:", "opts": ["Ativo realizável a longo prazo.", "Ativo não circulante mantido para venda.", "Propriedade para investimento.", "Ativo imobilizado.", "Ativo intangível."], "ans": 2, "comment": "O terreno foi adquirido para valorização do capital. Portanto, deve ser reconhecido como propriedade para investimento."}, {"n": 4, "q": "Uma sociedade empresária de auditoria possui um terreno mantido para valorização de capital a longo prazo. Em relação à mensuração, ela deve:", "opts": ["Usar o método do custo.", "Usar o método do valor justo.", "Usar o método do custo de reposição.", "Escolher entre valor justo e custo.", "Escolher entre valor justo e valor presente."], "ans": 3, "comment": "Após o reconhecimento inicial, a entidade pode escolher como política contábil o método do valor justo ou o método do custo."}, {"n": 5, "q": "Uma empresa decidiu alugar um edifício e também espera que ele se valorize. Após reconhecê-lo como propriedade para investimento, pode escolher como política contábil:", "opts": ["Valor justo, com ganhos reconhecidos no resultado do período.", "Custo, com ganhos futuros em outros resultados abrangentes.", "Valor justo, com depreciação periódica.", "Valor justo, com ganhos no patrimônio líquido.", "Custo, com ganhos de valorização reconhecidos no resultado."], "ans": 0, "comment": "No método do valor justo, as variações positivas ou negativas são reconhecidas diretamente no resultado do período, e o bem não é depreciado."}, {"n": 6, "q": "Uma empresa de estacionamento aluga vagas específicas, identificadas, por contrato, e os custos de manutenção não são significativos. O estacionamento deve ser contabilizado como:", "opts": ["Imobilizado.", "Propriedade para investimento.", "Estoque.", "Ativo circulante mantido para venda.", "Intangível."], "ans": 1, "comment": "Como o bem é mantido para auferir aluguel e os serviços de manutenção são insignificantes, a classificação é propriedade para investimento."}, {"n": 7, "q": "Um edifício está desocupado, mas é mantido para ser arrendado futuramente por meio de arrendamento operacional. A classificação correta é:", "opts": ["Ativo imobilizado.", "Patrimônio líquido.", "Ativo realizável a longo prazo.", "Propriedade para investimento.", "Ativo não circulante mantido para venda."], "ans": 3, "comment": "Edifício desocupado mantido para futura locação é exemplo clássico de propriedade para investimento."}, {"n": 8, "q": "Uma empresa possui 20 casas, cada uma de R$ 400.000. Onze são destinadas à locação, quatro estão em reforma para futura locação, três são alugadas a empregados e duas são usadas na atividade operacional. Qual a contabilização correta?", "opts": ["R$ 1,6 milhão em PPI e R$ 6,4 milhões em imobilizado.", "R$ 6 milhões em PPI e R$ 2 milhões em imobilizado.", "R$ 7,2 milhões em PPI e R$ 800 mil em imobilizado.", "R$ 8 milhões em investimentos.", "R$ 8 milhões em imobilizado."], "ans": 1, "comment": "As 11 casas alugadas e as 4 em reforma para futura locação totalizam 15 casas em PPI: 15 × R$ 400 mil = R$ 6 milhões. As demais 5 casas ficam no imobilizado: R$ 2 milhões."}, {"n": 9, "q": "Uma escola possui prédio de 10 andares. Andares 1 a 5: uso próprio; 6 e 7: aluguel a terceiros; 8: aluguel a funcionários; 9 e 10: aluguel a terceiros. Cada andar vale R$ 2 milhões. Qual a classificação?", "opts": ["ARLP R$ 2 mi; Investimentos R$ 4 mi; Imobilizado R$ 14 mi.", "ARLP R$ 4 mi; Investimentos R$ 6 mi; Imobilizado R$ 10 mi.", "Investimentos R$ 6 mi; Imobilizado R$ 14 mi.", "Investimentos R$ 8 mi; Imobilizado R$ 12 mi.", "Investimentos R$ 10 mi; Imobilizado R$ 10 mi."], "ans": 3, "comment": "Os andares 6, 7, 9 e 10 são alugados a terceiros: 4 × R$ 2 mi = R$ 8 mi em Investimentos. Os demais 6 andares somam R$ 12 mi no Imobilizado."}, {"n": 10, "q": "Uma instituição comprou prédio por R$ 500.000 para aluguel. Usou valor justo e, depois, decidiu utilizá-lo em seus negócios. Na data da mudança, o valor justo era R$ 700.000. Qual o valor contábil após a transferência?", "opts": ["R$ 480.000.", "R$ 500.000.", "R$ 576.000.", "R$ 600.000.", "R$ 700.000."], "ans": 4, "comment": "Na transferência de propriedade para investimento mensurada a valor justo para o imobilizado, o valor justo na data da mudança de uso torna-se o custo atribuído. Logo, R$ 700.000."}];
+let i=0, sel=null, acertos=0, respondidas=Array(dados.length).fill(false), escolhas=Array(dados.length).fill(null);
+const letras=["A","B","C","D","E"];
+const tq=document.getElementById("tQuestao"), tc=document.getElementById("tComentario"), tf=document.getElementById("tFinal");
+function mostrarQuestao(){
+  tq.style.display="flex"; tc.style.display="none"; tf.style.display="none";
+  const x=dados[i]; document.getElementById("tag").textContent=`Questão ${i+1} de ${dados.length}`;
+  document.getElementById("q").textContent=x.q; document.getElementById("count").textContent=`${i+1} / ${dados.length}`;
+  document.getElementById("bar").style.width=`${((i+1)/dados.length)*100}%`;
+  sel=escolhas[i]; const box=document.getElementById("opts"); box.innerHTML="";
+  x.opts.forEach((o,j)=>{const b=document.createElement("button");b.className="opcao"+(sel===j?" sel":"");b.innerHTML=`<strong>${letras[j]})</strong> ${o}`;b.onclick=()=>{sel=j; escolhas[i]=j; mostrarQuestao()};box.appendChild(b)});
+}
+function responder(){
+  if(sel===null){alert("Marque uma alternativa antes de responder.");return}
+  if(!respondidas[i]){if(sel===dados[i].ans)acertos++;respondidas[i]=true}
+  tq.style.display="none";tc.style.display="flex";tf.style.display="none";
+  const certo=sel===dados[i].ans;
+  document.getElementById("tituloComentario").textContent=`Questão ${i+1}`;
+  document.getElementById("resultado").textContent=certo?"✅ Você acertou!":"❌ Você errou.";
+  document.getElementById("resultado").style.color=certo?"#176843":"#a32636";
+  document.getElementById("comentario").textContent=dados[i].comment;
+  document.getElementById("gabarito").textContent=`Gabarito: ${letras[dados[i].ans]}) ${dados[i].opts[dados[i].ans]}`;
+}
+function proxima(){if(i<dados.length-1){i++;mostrarQuestao()}else{finalizar()}}
+function voltar(){if(i>0){i--;mostrarQuestao()}}
+function rever(){mostrarQuestao()}
+function finalizar(){
+ tq.style.display="none";tc.style.display="none";tf.style.display="flex";
+ document.getElementById("count").textContent="Concluído";document.getElementById("bar").style.width="100%";
+ document.getElementById("nota").textContent=`${acertos} / ${dados.length}`;
+ const p=Math.round(acertos/dados.length*100);document.getElementById("msg").textContent=p===100?"Excelente! Você dominou o conteúdo.":p>=70?"Muito bom! Revise apenas os pontos de dúvida.":"Continue treinando e releia os comentários.";
+}
+function reiniciar(){i=0;sel=null;acertos=0;respondidas=Array(dados.length).fill(false);escolhas=Array(dados.length).fill(null);mostrarQuestao()}
+function inicio(){reiniciar()}
+mostrarQuestao();
+</script>
+</body>
+</html>
