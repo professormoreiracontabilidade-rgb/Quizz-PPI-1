@@ -3,92 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#123b58">
-<title>Quiz Quiz 1 — Questões 1 a 10</title>
+<meta name="theme-color" content="#113f67">
+<title>Quiz FGV — Propriedade para Investimento</title>
 <style>
-:root{--azul:#0d3b5a;--azul2:#1976a5;--claro:#e9f7ff;--rosa:#fff0f6;--verde:#1f8a5b;--vermelho:#c53d4d;--texto:#173044}
-*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eaf8ff,#fff4f8);color:var(--texto)}
-body{padding:9px} .app{width:min(100%,540px);margin:auto}
-header{background:linear-gradient(135deg,var(--azul),var(--azul2));color:white;border-radius:20px;padding:14px;text-align:center;box-shadow:0 12px 28px rgba(13,59,90,.18)}
-header .curso{font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px} header h1{margin:6px 0 2px;font-size:1.35rem} header p{margin:0;font-size:.85rem;opacity:.92}
-.painel{display:flex;align-items:center;gap:10px;background:white;border-radius:15px;padding:10px 12px;margin:10px 0;box-shadow:0 7px 18px rgba(20,70,100,.08)}
-.prog{flex:1;height:10px;background:#dcecf4;border-radius:20px;overflow:hidden} .bar{height:100%;background:linear-gradient(90deg,#42aee0,#ec82ad);width:10%;transition:.3s} .count{font-weight:900;font-size:.88rem}
-.tela{background:white;border-radius:22px;min-height:540px;padding:18px;box-shadow:0 14px 34px rgba(22,73,103,.14);display:flex;flex-direction:column}
-.tag{align-self:flex-start;background:#dff3ff;color:#145171;font-size:.75rem;font-weight:900;border-radius:999px;padding:7px 11px;margin-bottom:12px}
-.questao{font-size:1.08rem;line-height:1.42;font-weight:800;margin-bottom:14px}
-.opcoes{display:grid;gap:9px} .opcao{border:2px solid #dbeaf2;background:#f9fdff;border-radius:15px;padding:12px;text-align:left;font-size:.98rem;line-height:1.3;font-weight:700;cursor:pointer}
-.opcao.sel{border-color:#2588b7;background:#e4f5fd} .opcao.certa{border-color:var(--verde);background:#e7f8ef;color:#12663f} .opcao.errada{border-color:var(--vermelho);background:#fff0f2;color:#9d2433}
+:root{
+  --azul:#103d63;--azul2:#1f78a8;--claro:#e9f7ff;--rosa:#fff0f6;
+  --verde:#176c45;--vermelho:#a92f40;--texto:#173044;--borda:#d9e8f0;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#eaf8ff 0%,#fff4f8 100%);color:var(--texto)}
+body{padding:9px}
+.app{width:min(100%,560px);margin:0 auto}
+header{background:linear-gradient(135deg,var(--azul),var(--azul2));color:#fff;border-radius:20px;padding:14px;text-align:center;box-shadow:0 12px 28px rgba(13,59,90,.18)}
+header .curso{font-size:.78rem;font-weight:900;letter-spacing:.5px;text-transform:uppercase}
+header h1{font-size:1.32rem;margin:6px 0 2px}
+header p{font-size:.84rem;margin:0;opacity:.93}
+.painel{display:flex;align-items:center;gap:10px;background:#fff;border-radius:15px;padding:10px 12px;margin:10px 0;box-shadow:0 7px 18px rgba(20,70,100,.08)}
+.prog{flex:1;height:10px;background:#dcecf4;border-radius:20px;overflow:hidden}
+.bar{height:100%;background:linear-gradient(90deg,#45b2e2,#ef82b0);width:10%;transition:.3s}
+.count{font-weight:900;font-size:.88rem}
+.tela{background:#fff;border-radius:22px;min-height:580px;padding:18px;box-shadow:0 14px 34px rgba(22,73,103,.14);display:flex;flex-direction:column}
+.banca{background:#dff3ff;color:#145171;border-radius:12px;padding:10px 12px;font-size:.82rem;font-weight:900;line-height:1.35;margin-bottom:12px}
+.questao{font-size:1.02rem;line-height:1.48;font-weight:800;white-space:pre-line;margin-bottom:14px}
+.opcoes{display:grid;gap:9px}
+.opcao{border:2px solid var(--borda);background:#f9fdff;border-radius:15px;padding:12px;text-align:left;font-size:.96rem;line-height:1.35;font-weight:700;cursor:pointer}
+.opcao.sel{border-color:#2588b7;background:#e4f5fd}
 .aviso{margin-top:auto;padding-top:14px;text-align:center;font-size:.84rem;color:#607786}
-.acoes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px} button{border:0;border-radius:14px;padding:13px 10px;font-size:.96rem;font-weight:900;cursor:pointer}
-.sec{background:white;color:#174b68;border:1px solid #d7e9f2} .pri{background:linear-gradient(135deg,#17658e,#278fbd);color:white}
-.comentario{display:none;background:linear-gradient(145deg,#fff0f6,#fff8fb)} .comentario h2{font-size:1.2rem;margin:4px 0 14px;color:#9c3d67} .resultado{font-size:1rem;font-weight:900;margin-bottom:12px} .box{background:white;border-left:6px solid #ef86b1;border-radius:14px;padding:15px;font-size:1rem;line-height:1.5;font-weight:700}
+.acoes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+button{border:0;border-radius:14px;padding:13px 10px;font-size:.96rem;font-weight:900;cursor:pointer}
+.sec{background:#fff;color:#174b68;border:1px solid #d7e9f2}
+.pri{background:linear-gradient(135deg,#17658e,#278fbd);color:#fff}
+.comentario{display:none;background:linear-gradient(145deg,#fff0f6,#fff8fb)}
+.comentario h2{font-size:1.2rem;margin:4px 0 14px;color:#9c3d67}
+.resultado{font-size:1.03rem;font-weight:900;margin-bottom:12px}
+.box{background:#fff;border-left:6px solid #ef86b1;border-radius:14px;padding:15px;font-size:1rem;line-height:1.55;font-weight:700}
 .gabarito{margin-top:12px;background:#e8f8ef;border-radius:13px;padding:12px;font-weight:900;color:#176843}
-.final{display:none;text-align:center;justify-content:center;align-items:center} .nota{font-size:3rem;font-weight:900;color:#17658e;margin:12px 0} .final h2{font-size:1.5rem}
-@media(max-height:740px){.tela{min-height:470px} .questao{font-size:1rem} .opcao{padding:10px;font-size:.93rem}}
+.final{display:none;text-align:center;justify-content:center;align-items:center}
+.nota{font-size:3rem;font-weight:900;color:#17658e;margin:12px 0}
+@media(max-height:760px){
+  .tela{min-height:500px}
+  .questao{font-size:.96rem}
+  .opcao{padding:10px;font-size:.92rem}
+}
 </style>
 </head>
 <body>
 <div class="app">
-<header><div class="curso">Curso de Contabilidade Professor Moreira</div><h1>Quiz 1 — Questões 1 a 10</h1><p>Propriedade para Investimento • CPC 28</p></header>
-<div class="painel"><div class="prog"><div class="bar" id="bar"></div></div><div class="count" id="count"></div></div>
+<header>
+  <div class="curso">Curso de Contabilidade Professor Moreira</div>
+  <h1>Quiz FGV — Propriedade para Investimento</h1>
+  <p>Questão em uma tela • explicação detalhada na tela seguinte</p>
+</header>
 
-<section class="tela" id="tQuestao">
-<div class="tag" id="tag"></div>
-<div class="questao" id="q"></div>
-<div class="opcoes" id="opts"></div>
-<div class="aviso">Marque uma alternativa e toque em “Responder”.</div>
-<div class="acoes"><button class="sec" onclick="voltar()">◀ Voltar</button><button class="pri" onclick="responder()">Responder</button></div>
+<div class="painel">
+  <div class="prog"><div class="bar" id="bar"></div></div>
+  <div class="count" id="count"></div>
+</div>
+
+<section class="tela" id="tq">
+  <div class="banca" id="bank"></div>
+  <div class="questao" id="q"></div>
+  <div class="opcoes" id="opts"></div>
+  <div class="aviso">Marque uma alternativa e toque em “Responder”.</div>
+  <div class="acoes">
+    <button class="sec" onclick="voltar()">◀ Voltar</button>
+    <button class="pri" onclick="responder()">Responder</button>
+  </div>
 </section>
 
-<section class="tela comentario" id="tComentario">
-<div class="tag">Comentário da questão</div>
-<h2 id="tituloComentario"></h2>
-<div class="resultado" id="resultado"></div>
-<div class="box" id="comentario"></div>
-<div class="gabarito" id="gabarito"></div>
-<div class="acoes" style="margin-top:auto"><button class="sec" onclick="rever()">↩ Rever questão</button><button class="pri" onclick="proxima()">Próxima ▶</button></div>
+<section class="tela comentario" id="tc">
+  <div class="banca" id="bank2"></div>
+  <h2 id="tit"></h2>
+  <div class="resultado" id="res"></div>
+  <div class="box" id="com"></div>
+  <div class="gabarito" id="gab"></div>
+  <div class="acoes" style="margin-top:auto">
+    <button class="sec" onclick="rever()">↩ Rever questão</button>
+    <button class="pri" onclick="proxima()">Próxima ▶</button>
+  </div>
 </section>
 
-<section class="tela final" id="tFinal">
-<div><div class="tag" style="margin:auto">Resultado final</div><h2>Quiz concluído!</h2><div class="nota" id="nota"></div><p id="msg"></p><div class="acoes"><button class="sec" onclick="reiniciar()">↻ Refazer</button><button class="pri" onclick="inicio()">Início</button></div></div>
+<section class="tela final" id="tf">
+  <div>
+    <div class="banca" style="text-align:center">Resultado final</div>
+    <h2>Quiz concluído!</h2>
+    <div class="nota" id="nota"></div>
+    <p id="msg"></p>
+    <div class="acoes">
+      <button class="sec" onclick="reiniciar()">↻ Refazer</button>
+      <button class="pri" onclick="reiniciar()">Início</button>
+    </div>
+  </div>
 </section>
 </div>
+
 <script>
-const dados = [{"n": 1, "q": "Uma entidade adquiriu um terreno por R$ 200.000. A entidade ainda não determinou como irá utilizar o terreno. Em seu balanço patrimonial, o terreno deve ser contabilizado como:", "opts": ["Ativo circulante.", "Ativo imobilizado.", "Ativo intangível.", "Propriedade para investimento.", "Ativo realizável a longo prazo."], "ans": 3, "comment": "Terreno mantido para uso futuro ainda indeterminado é classificado como propriedade para investimento, pois se presume mantido para valorização do capital."}, {"n": 2, "q": "Conceitualmente, propriedade para investimento se refere a uma propriedade mantida para auferir aluguel, valorização do capital ou ambas. No Balanço Patrimonial, esse item deve ser apresentado no subgrupo:", "opts": ["Ativo imobilizado.", "Ativo realizável a longo prazo.", "Ajustes de avaliação patrimonial.", "Investimentos.", "Outros resultados abrangentes."], "ans": 3, "comment": "A propriedade para investimento é classificada no Ativo Não Circulante, no subgrupo Investimentos."}, {"n": 3, "q": "Uma entidade comprou um terreno ao lado de uma obra do metrô, com o intuito de valorização. A classificação correta é:", "opts": ["Ativo realizável a longo prazo.", "Ativo não circulante mantido para venda.", "Propriedade para investimento.", "Ativo imobilizado.", "Ativo intangível."], "ans": 2, "comment": "O terreno foi adquirido para valorização do capital. Portanto, deve ser reconhecido como propriedade para investimento."}, {"n": 4, "q": "Uma sociedade empresária de auditoria possui um terreno mantido para valorização de capital a longo prazo. Em relação à mensuração, ela deve:", "opts": ["Usar o método do custo.", "Usar o método do valor justo.", "Usar o método do custo de reposição.", "Escolher entre valor justo e custo.", "Escolher entre valor justo e valor presente."], "ans": 3, "comment": "Após o reconhecimento inicial, a entidade pode escolher como política contábil o método do valor justo ou o método do custo."}, {"n": 5, "q": "Uma empresa decidiu alugar um edifício e também espera que ele se valorize. Após reconhecê-lo como propriedade para investimento, pode escolher como política contábil:", "opts": ["Valor justo, com ganhos reconhecidos no resultado do período.", "Custo, com ganhos futuros em outros resultados abrangentes.", "Valor justo, com depreciação periódica.", "Valor justo, com ganhos no patrimônio líquido.", "Custo, com ganhos de valorização reconhecidos no resultado."], "ans": 0, "comment": "No método do valor justo, as variações positivas ou negativas são reconhecidas diretamente no resultado do período, e o bem não é depreciado."}, {"n": 6, "q": "Uma empresa de estacionamento aluga vagas específicas, identificadas, por contrato, e os custos de manutenção não são significativos. O estacionamento deve ser contabilizado como:", "opts": ["Imobilizado.", "Propriedade para investimento.", "Estoque.", "Ativo circulante mantido para venda.", "Intangível."], "ans": 1, "comment": "Como o bem é mantido para auferir aluguel e os serviços de manutenção são insignificantes, a classificação é propriedade para investimento."}, {"n": 7, "q": "Um edifício está desocupado, mas é mantido para ser arrendado futuramente por meio de arrendamento operacional. A classificação correta é:", "opts": ["Ativo imobilizado.", "Patrimônio líquido.", "Ativo realizável a longo prazo.", "Propriedade para investimento.", "Ativo não circulante mantido para venda."], "ans": 3, "comment": "Edifício desocupado mantido para futura locação é exemplo clássico de propriedade para investimento."}, {"n": 8, "q": "Uma empresa possui 20 casas, cada uma de R$ 400.000. Onze são destinadas à locação, quatro estão em reforma para futura locação, três são alugadas a empregados e duas são usadas na atividade operacional. Qual a contabilização correta?", "opts": ["R$ 1,6 milhão em PPI e R$ 6,4 milhões em imobilizado.", "R$ 6 milhões em PPI e R$ 2 milhões em imobilizado.", "R$ 7,2 milhões em PPI e R$ 800 mil em imobilizado.", "R$ 8 milhões em investimentos.", "R$ 8 milhões em imobilizado."], "ans": 1, "comment": "As 11 casas alugadas e as 4 em reforma para futura locação totalizam 15 casas em PPI: 15 × R$ 400 mil = R$ 6 milhões. As demais 5 casas ficam no imobilizado: R$ 2 milhões."}, {"n": 9, "q": "Uma escola possui prédio de 10 andares. Andares 1 a 5: uso próprio; 6 e 7: aluguel a terceiros; 8: aluguel a funcionários; 9 e 10: aluguel a terceiros. Cada andar vale R$ 2 milhões. Qual a classificação?", "opts": ["ARLP R$ 2 mi; Investimentos R$ 4 mi; Imobilizado R$ 14 mi.", "ARLP R$ 4 mi; Investimentos R$ 6 mi; Imobilizado R$ 10 mi.", "Investimentos R$ 6 mi; Imobilizado R$ 14 mi.", "Investimentos R$ 8 mi; Imobilizado R$ 12 mi.", "Investimentos R$ 10 mi; Imobilizado R$ 10 mi."], "ans": 3, "comment": "Os andares 6, 7, 9 e 10 são alugados a terceiros: 4 × R$ 2 mi = R$ 8 mi em Investimentos. Os demais 6 andares somam R$ 12 mi no Imobilizado."}, {"n": 10, "q": "Uma instituição comprou prédio por R$ 500.000 para aluguel. Usou valor justo e, depois, decidiu utilizá-lo em seus negócios. Na data da mudança, o valor justo era R$ 700.000. Qual o valor contábil após a transferência?", "opts": ["R$ 480.000.", "R$ 500.000.", "R$ 576.000.", "R$ 600.000.", "R$ 700.000."], "ans": 4, "comment": "Na transferência de propriedade para investimento mensurada a valor justo para o imobilizado, o valor justo na data da mudança de uso torna-se o custo atribuído. Logo, R$ 700.000."}];
-let i=0, sel=null, acertos=0, respondidas=Array(dados.length).fill(false), escolhas=Array(dados.length).fill(null);
-const letras=["A","B","C","D","E"];
-const tq=document.getElementById("tQuestao"), tc=document.getElementById("tComentario"), tf=document.getElementById("tFinal");
-function mostrarQuestao(){
+const dados = [{"bank": "FGV - Inv Pol (PC AM)/PC AM/4ª Classe/2022", "num": "01", "q": "Uma entidade adquiriu um terreno por R$ 200.000. A entidade ainda não determinou como irá utilizar o terreno. Em seu balanço patrimonial, o terreno deve ser contabilizado como", "opts": ["ativo circulante.", "ativo imobilizado.", "ativo intangível.", "propriedade para Investimento.", "ativo realizável a longo prazo."], "ans": 3, "comment": "O terreno deve ser classificado como propriedade para investimento porque a entidade ainda não definiu seu uso futuro. Pelo CPC 28, terreno mantido para uso futuro correntemente indeterminado é considerado mantido para valorização do capital. Por isso, não é imobilizado, pois não está sendo utilizado nas atividades da entidade; também não é estoque, porque não há intenção definida de venda no curso normal dos negócios."}, {"bank": "FGV - Cont (CM Aracaju)/CM Aracaju/2021", "num": "02", "q": "Conceitualmente, propriedade para investimento se refere à uma propriedade (terreno ou edificação – ou parte da edificação – ou ambos) mantida pela entidade para auferir receitas de aluguel ou para valorização do capital, ou para ambas. No Balanço Patrimonial, esse item deve ser apresentado no subgrupo:", "opts": ["ativo imobilizado;", "ativo realizável a longo prazo;", "ajustes de avaliação patrimonial;", "investimentos;", "outros resultados abrangentes."], "ans": 3, "comment": "A propriedade para investimento integra o Ativo Não Circulante, no subgrupo Investimentos. O elemento é mantido para obter renda de aluguel, valorização do capital ou ambas, e não para uso na produção, fornecimento de bens ou serviços, finalidades administrativas ou venda no curso normal dos negócios."}, {"bank": "FGV - Ana Leg (ALERO)/ALERO/Contabilidade/2018", "num": "03", "q": "Uma entidade comprou um terreno ao lado de uma obra do metrô, com o intuito de valorização. Assinale a opção que indica a correta classificação do terreno no balanço patrimonial da entidade.", "opts": ["Ativo realizável a longo prazo.", "Ativo não circulante mantido para venda.", "Propriedade para investimento.", "Ativo imobilizado.", "Ativo intangível."], "ans": 2, "comment": "O terreno foi adquirido com o objetivo de valorização do capital. Essa finalidade enquadra diretamente o bem como propriedade para investimento. O fato de estar próximo a uma obra do metrô reforça a expectativa de valorização, mas o ponto decisivo é a intenção de manter o terreno para ganho de capital."}, {"bank": "FGV - AFCTE (Sefaz AM)/SEFAZ AM/2022", "num": "04", "q": "Uma sociedade empresária que presta serviços de auditoria possui um terreno que é mantido para valorização de capital a longo prazo. Em relação à mensuração do terreno no balanço patrimonial da sociedade empresária, ela deve", "opts": ["usar o método do custo.", "usar o método do valor justo.", "usar o método do custo de reposição", "escolher entre o método do valor justo e o método do custo.", "escolher entre o método do valor justo e o método do valor presente."], "ans": 3, "comment": "Após o reconhecimento inicial pelo custo, a entidade deve escolher uma política contábil para a mensuração subsequente: método do valor justo ou método do custo. No método do valor justo, as variações são reconhecidas no resultado. No método do custo, aplicam-se depreciação e teste de recuperabilidade, quando cabíveis."}, {"bank": "FGV - ACE (TCE TO)/TCE TO/Ciências Contábeis/2022", "num": "05", "q": "Uma empresa decidiu alugar um edifício que possui numa área nobre de uma cidade. Também espera que o edifício se valorize ao longo do tempo. Nesse caso, após o reconhecimento do edifício como propriedade para investimento, a empresa pode escolher como sua política contábil o método do:", "opts": ["valor justo, e os futuros ganhos de valorização do edifício, se ocorrerem, deverão ser contabilizados no resultado do período em que ocorrerem;", "custo, e os futuros ganhos de valorização do edifício, se ocorrerem, deverão ser contabilizados em outros resultados abrangentes no patrimônio líquido;", "valor justo, e há que se reconhecer, periodicamente, a sua depreciação com base nas regras contábeis aplicáveis ao ativo imobilizado;", "valor justo, e os futuros ganhos de valorização do edifício, se ocorrerem, deverão ser contabilizados em outros resultados abrangentes no patrimônio líquido;", "custo, e os futuros ganhos de valorização do edifício, se ocorrerem, deverão ser contabilizados no resultado do período em que ocorrerem."], "ans": 0, "comment": "No método do valor justo, a propriedade para investimento não é depreciada. As variações positivas ou negativas do valor justo são reconhecidas diretamente no resultado do período em que ocorrerem. Por isso, a alternativa correta é a que associa o método do valor justo ao reconhecimento dos ganhos de valorização no resultado."}, {"bank": "FGV - FR (Pref RJ)/Pref RJ/2023", "num": "06", "q": "Uma empresa de estacionamento aluga vagas específicas no seu terreno. Todas as vagas do estacionamento são alugadas por meio de um contrato padrão. Pelo contrato, o cliente obtém o direito exclusivo de estacionar em uma vaga específica durante todo o período do contrato. A empresa não pode alterar o espaço designado ao cliente. A vaga no estacionamento atribuída é identificada por um número pintado no chão e os custos de manutenção não são significativos. Nesse caso, considerando-se as informações apresentadas, o estacionamento deve ser contabilizado como:", "opts": ["imobilizado;", "propriedade para investimento;", "estoque;", "ativo circulante mantido para venda;", "intangível."], "ans": 1, "comment": "O terreno é mantido para gerar renda de aluguel, e os serviços de manutenção são insignificantes em relação ao contrato como um todo. Assim, o estacionamento atende à definição de propriedade para investimento. Se os serviços prestados fossem significativos, a classificação poderia ser no imobilizado."}, {"bank": "FGV - Sup (IMBEL)/IMBEL/Contador/2021", "num": "07", "q": "Em 31/12/X0, uma empresa apresentava, em seu Balanço Patrimonial, um edifício. O prédio estava desocupado, mas era mantido pela empresa para ser arrendado no futuro, em um arrendamento operacional. Assinale a opção que indica a classificação correta do edifício no Balanço Patrimonial.", "opts": ["Ativo imobilizado.", "Patrimônio líquido.", "Ativo realizável a longo prazo.", "Propriedade para investimento.", "Ativo não circulante mantido para venda."], "ans": 3, "comment": "Edifício desocupado, mas mantido para futura locação por arrendamento operacional, é exemplo expresso de propriedade para investimento. O imóvel não precisa estar alugado na data do balanço; basta estar mantido com essa finalidade."}, {"bank": "FGV - Cons TE (SEFAZ ES)/SEFAZ ES/Ciências Contábeis/2022", "num": "08", "q": "Uma sociedade empresária que administra propriedades possui 20 casas em um condomínio. Cada casa tem valor contábil de R$ 400.000. Em 31/12/X0, as casas eram utilizadas do seguinte modo:\n• onze estavam destinadas à locação a terceiros.\n• quatro estavam em reforma para futura locação.\n• três eram alugadas por valores mais baixos aos funcionários e suas famílias.\n• duas eram utilizadas para a atividade operacional da sociedade empresária.\nAssinale a opção que indica a contabilização das casas no ativo da sociedade empresária em seu balanço patrimonial, em 31/12/X0.", "opts": ["R$ 1,6 milhão em propriedade para investimentos e R$ 6,4 milhões em ativo imobilizado.", "R$ 6 milhões em propriedade para investimentos e R$ 2 milhões em ativo imobilizado.", "R$ 7,2 milhões em propriedade para investimentos e R$ 800 mil em ativo imobilizado.", "R$ 8 milhões em investimentos.", "R$ 8 milhões em ativo imobilizado."], "ans": 1, "comment": "As 11 casas destinadas à locação e as 4 em reforma para futura locação são propriedades para investimento: 15 × R$ 400.000 = R$ 6.000.000. As 3 casas alugadas a funcionários e as 2 usadas na operação são consideradas de uso próprio: 5 × R$ 400.000 = R$ 2.000.000 no imobilizado."}, {"bank": "FGV - AJ TRT13/TRT 13/Administrativa/Contabilidade/2022", "num": "09", "q": "Uma sociedade empresária tinha como atividade fim a prestação de serviços de educação. Ela possuía um prédio de 10 andares, que funcionava do seguinte modo:\n∙Andares 1 a 5: prestação de serviços\n∙Andares 6 e 7: aluguel para que terceiros prestem serviços\n∙Andares 8: aluguel para que seus funcionários originados de outras cidades residam\n∙Andares 9 a 10: aluguel para que terceiros residam\nCada andar do prédio era avaliado por R$2 milhões.\nAssinale a opção que indica a contabilização relacionada ao prédio no balanço patrimonial da sociedade empresária:", "opts": ["Ativo Realizável a Longo Prazo- R$2 milhões; Investimentos- R$4 milhões e Ativo Imobilizado- R$14 milhões.", "Ativo Realizável a Longo Prazo- R$4 milhões; Investimentos- R$6 milhões e Ativo Imobilizado- R$10 milhões.", "Investimentos- R$6 milhões e Ativo Imobilizado- R$14 milhões.", "Investimentos- R$8 milhões e Ativo Imobilizado- R$12 milhões.", "Investimentos- R$10 milhões e Ativo Imobilizado- R$10 milhões."], "ans": 3, "comment": "Os andares 6 e 7 e os andares 9 e 10 são alugados a terceiros, totalizando 4 andares em propriedade para investimento: 4 × R$ 2 milhões = R$ 8 milhões. Os andares 1 a 5 são utilizados na atividade educacional e o andar 8 é destinado aos funcionários, totalizando 6 andares no imobilizado: 6 × R$ 2 milhões = R$ 12 milhões."}, {"bank": "FGV - AFRE MG/SEF MG/Auditoria e Fiscalização/2023", "num": "10", "q": "Uma instituição de ensino adquiriu, em 01/01/X0, um prédio para alugar a terceiros por R$500.000. A vida útil do prédio foi estimada em 50 anos. Após o reconhecimento inicial, a instituição de ensino escolheu mensurar o prédio pelo método do valor justo, com acréscimo reconhecido anualmente na Demonstração do Resultado. Na data, este era de R$600.000. Em 31/12/X1, a instituição decidiu que iria utilizar o prédio em seus negócios, passando a contabilizalo como ativo imobilizado. Na data, o valor justo do prédio era de R$700.000. Assinale a opção que indica o valor contábil do prédio no balanço patrimonial da instituição de ensino, em 31/12/X1.", "opts": ["R$480.000.", "R$500.000.", "R$576.000.", "R$600.000.", "R$700.000."], "ans": 4, "comment": "Quando uma propriedade para investimento mensurada pelo valor justo passa a ser utilizada pela própria entidade, ocorre transferência para o imobilizado. O valor justo na data da mudança de uso torna-se o custo atribuído do ativo. Como o valor justo em 31/12/X1 era R$ 700.000, esse será o valor contábil inicial no imobilizado."}];
+let i=0, sel=null, acertos=0;
+let respondidas=Array(dados.length).fill(false);
+let escolhas=Array(dados.length).fill(null);
+const letras=["a","b","c","d","e"];
+
+const tq=document.getElementById("tq");
+const tc=document.getElementById("tc");
+const tf=document.getElementById("tf");
+
+function mostrar(){
   tq.style.display="flex"; tc.style.display="none"; tf.style.display="none";
-  const x=dados[i]; document.getElementById("tag").textContent=`Questão ${i+1} de ${dados.length}`;
-  document.getElementById("q").textContent=x.q; document.getElementById("count").textContent=`${i+1} / ${dados.length}`;
+  const x=dados[i];
+  document.getElementById("bank").textContent=x.bank+" "+x.num+")";
+  document.getElementById("q").textContent=x.q;
+  document.getElementById("count").textContent=`${i+1} / ${dados.length}`;
   document.getElementById("bar").style.width=`${((i+1)/dados.length)*100}%`;
-  sel=escolhas[i]; const box=document.getElementById("opts"); box.innerHTML="";
-  x.opts.forEach((o,j)=>{const b=document.createElement("button");b.className="opcao"+(sel===j?" sel":"");b.innerHTML=`<strong>${letras[j]})</strong> ${o}`;b.onclick=()=>{sel=j; escolhas[i]=j; mostrarQuestao()};box.appendChild(b)});
+  sel=escolhas[i];
+
+  const box=document.getElementById("opts");
+  box.innerHTML="";
+  x.opts.forEach((o,j)=>{
+    const b=document.createElement("button");
+    b.className="opcao"+(sel===j?" sel":"");
+    b.innerHTML=`<strong>${letras[j]})</strong> ${o}`;
+    b.onclick=()=>{sel=j; escolhas[i]=j; mostrar();};
+    box.appendChild(b);
+  });
 }
+
 function responder(){
-  if(sel===null){alert("Marque uma alternativa antes de responder.");return}
-  if(!respondidas[i]){if(sel===dados[i].ans)acertos++;respondidas[i]=true}
-  tq.style.display="none";tc.style.display="flex";tf.style.display="none";
-  const certo=sel===dados[i].ans;
-  document.getElementById("tituloComentario").textContent=`Questão ${i+1}`;
-  document.getElementById("resultado").textContent=certo?"✅ Você acertou!":"❌ Você errou.";
-  document.getElementById("resultado").style.color=certo?"#176843":"#a32636";
-  document.getElementById("comentario").textContent=dados[i].comment;
-  document.getElementById("gabarito").textContent=`Gabarito: ${letras[dados[i].ans]}) ${dados[i].opts[dados[i].ans]}`;
+  if(sel===null){alert("Marque uma alternativa antes de responder.");return;}
+  if(!respondidas[i]){
+    if(sel===dados[i].ans) acertos++;
+    respondidas[i]=true;
+  }
+  tq.style.display="none"; tc.style.display="flex"; tf.style.display="none";
+  const x=dados[i];
+  const certo=sel===x.ans;
+  document.getElementById("bank2").textContent=x.bank+" "+x.num+")";
+  document.getElementById("tit").textContent="Explicação detalhada";
+  document.getElementById("res").textContent=certo?"✅ Você acertou!":"❌ Você errou.";
+  document.getElementById("res").style.color=certo?"#176843":"#a32636";
+  document.getElementById("com").textContent=x.comment;
+  document.getElementById("gab").textContent=`Gabarito: ${letras[x.ans]}) ${x.opts[x.ans]}`;
 }
-function proxima(){if(i<dados.length-1){i++;mostrarQuestao()}else{finalizar()}}
-function voltar(){if(i>0){i--;mostrarQuestao()}}
-function rever(){mostrarQuestao()}
+
+function proxima(){
+  if(i<dados.length-1){i++; mostrar();}
+  else finalizar();
+}
+function voltar(){if(i>0){i--; mostrar();}}
+function rever(){mostrar();}
 function finalizar(){
- tq.style.display="none";tc.style.display="none";tf.style.display="flex";
- document.getElementById("count").textContent="Concluído";document.getElementById("bar").style.width="100%";
- document.getElementById("nota").textContent=`${acertos} / ${dados.length}`;
- const p=Math.round(acertos/dados.length*100);document.getElementById("msg").textContent=p===100?"Excelente! Você dominou o conteúdo.":p>=70?"Muito bom! Revise apenas os pontos de dúvida.":"Continue treinando e releia os comentários.";
+  tq.style.display="none"; tc.style.display="none"; tf.style.display="flex";
+  document.getElementById("count").textContent="Concluído";
+  document.getElementById("bar").style.width="100%";
+  document.getElementById("nota").textContent=`${acertos} / ${dados.length}`;
+  const p=Math.round(acertos/dados.length*100);
+  document.getElementById("msg").textContent=
+    p===100?"Excelente! Você dominou o conteúdo.":
+    p>=70?"Muito bom! Revise apenas os pontos de dúvida.":
+    "Continue treinando e leia novamente as explicações detalhadas.";
 }
-function reiniciar(){i=0;sel=null;acertos=0;respondidas=Array(dados.length).fill(false);escolhas=Array(dados.length).fill(null);mostrarQuestao()}
-function inicio(){reiniciar()}
-mostrarQuestao();
+function reiniciar(){
+  i=0; sel=null; acertos=0;
+  respondidas=Array(dados.length).fill(false);
+  escolhas=Array(dados.length).fill(null);
+  mostrar();
+}
+mostrar();
 </script>
 </body>
 </html>
